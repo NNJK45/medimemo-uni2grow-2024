@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/login/Login";
+import Contact from "./pages/contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     loader: () => redirect("/login"),
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
   },
 ]);
 

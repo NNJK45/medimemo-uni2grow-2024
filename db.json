@@ -49,7 +49,8 @@
       "phone": "+237 656585542",
       "email": "davis@gmail.com",
       "address": "Dschang, Cameroun",
-      "notes": ""
+      "notes": "",
+      "profession": "Pharmacist"
     },
     {
       "id": 2,
@@ -58,7 +59,8 @@
       "phone": "+237 674772917",
       "email": "laura@gmail.com",
       "address": "Douala, Cameroun",
-      "notes": ""
+      "notes": "",
+      "profession": "Psychologist"
     },
     {
       "id": 3,
@@ -67,7 +69,38 @@
       "phone": "+237 677345741",
       "email": "john@gmail.com",
       "address": "Yaounde, Cameroun",
-      "notes": ""
+      "notes": "",
+      "profession": "Neurologist"
+    },
+    {
+      "id": 4,
+      "name": "Emily Johnson",
+      "qualification": "Dr",
+      "phone": "+237 677345741",
+      "email": "emily@gmail.com",
+      "address": "Bamako, Mali",
+      "notes": "",
+      "profession": "Cardiologist"
+    },
+    {
+      "id": 5,
+      "name": "John Doe",
+      "qualification": "Dr",
+      "phone": "+237 677345741",
+      "email": "john@gmail.com",
+      "address": "Yaounde, Cameroun",
+      "notes": "",
+      "profession": "Cardiologist"
+    },
+    {
+      "id": 6,
+      "name": "Sarah Thompson",
+      "qualification": "Dr",
+      "phone": "+237 674772917",
+      "email": "laura@gmail.com",
+      "address": "Douala, Cameroun",
+      "notes": "",
+      "profession": "Psychologist"
     }
   ],
   "prescriptions": [
