@@ -51,6 +51,8 @@
       "address": "Dschang, Cameroun",
       "notes": "",
       "profession": "Pharmacist"
+      "profession": "Pediatrician",
+      "notes": ""
     },
     {
       "id": "2",
@@ -61,6 +63,8 @@
       "address": "Douala, Cameroun",
       "notes": "",
       "profession": "Psychologist"
+      "profession": "Ophthalmologist",
+      "notes": ""
     },
     {
       "id": "3",
@@ -101,6 +105,28 @@
       "address": "Douala, Cameroun",
       "notes": "",
       "profession": "Psychologist"
+      "profession": "Cardiologist",
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "name": "John Smith",
+      "qualification": "Dr",
+      "phone": "+237 677345741",
+      "email": "john@gmail.com",
+      "address": "Yaounde, Cameroun",
+      "profession": "Cardiologist",
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "name": "John Smith",
+      "qualification": "Dr",
+      "phone": "+237 677345741",
+      "email": "john@gmail.com",
+      "address": "Yaounde, Cameroun",
+      "profession": "Cardiologist",
+      "notes": ""
     }
   ],
   "prescriptions": [
