@@ -4,7 +4,7 @@ import {
   Card,
   Link,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import { ChangeEvent, FormEvent, useState } from "react";
@@ -18,23 +18,26 @@ import {
   formError,
   formValues,
   validateForm,
-  validationField,
+  validationField
 } from "../../utils/Validation";
+
+import { SnackBarComponent } from "../../components/snackBarComponent/SnackBarComponent";
 import "./Login.css";
 import { signInWithPopup } from "firebase/auth"; 
 import { auth, provider } from "./firebase-config";  
 
 function Login() {
   const navigate = useNavigate();
+  const [loginError, setLoginError] = useState<boolean>(false);
 
   const [credentials, setCredentials] = useState<formValues>({
     username: "",
-    password: "",
+    password: ""
   });
 
   const [errors, setErrors] = useState<formError>({
     username: "",
-    password: "",
+    password: ""
   });
 
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
@@ -47,12 +50,12 @@ function Login() {
 
     setErrors((prevState) => ({
       ...prevState,
-      [fieldName]: error || "",
+      [fieldName]: error || ""
     }));
 
     setCredentials((prevState) => ({
       ...prevState,
-      [fieldName]: value,
+      [fieldName]: value
     }));
   };
 
@@ -66,7 +69,7 @@ function Login() {
         setErrors(validationErrors);
       }
     } catch (error) {
-      console.error(error);
+      setLoginError(true)
     }
   };
 
@@ -90,6 +93,16 @@ function Login() {
 
   return (
     <>
+
+{loginError && (
+        <SnackBarComponent
+          open={loginError}
+          close={handleSnackbarClose}
+          severity="error"
+          message="failled submit data"
+        />
+      )}
+
       <div className="login-container">
         <div className="img">
           <img alt="title" src={oh} />
@@ -179,7 +192,7 @@ function Login() {
                   justifyContent: "center",
                   alignItems: "center",
                   display: "flex",
-                  cursor: "pointer",
+                  cursor: "pointer"
                 }}
                 onClick={handleGoogleLogin}
               >
@@ -193,7 +206,7 @@ function Login() {
                   justifyContent: "center",
                   alignItems: "center",
                   display: "flex",
-                  cursor: "pointer",
+                  cursor: "pointer"
                 }}
                 
               >
@@ -206,7 +219,7 @@ function Login() {
                   justifyContent: "center",
                   alignItems: "center",
                   display: "flex",
-                  cursor: "pointer",
+                  cursor: "pointer"
                 }}
                 onClick={handleGoogleLogin}
               >
@@ -232,7 +245,7 @@ function Login() {
             {snackbarMessage}
           </Alert>
         </Snackbar>
-      </div>
+        </div>
     </>
   );
 }

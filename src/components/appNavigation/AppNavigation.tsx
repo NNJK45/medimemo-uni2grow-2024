@@ -7,10 +7,6 @@ import { ItemNavigation, dataItem } from "../../utils/navigationData";
 export function AppNavigation() {
   const location = useLocation();
 
-  if (location.pathname === "/login") {
-    return null;
-  }
-
   const [activepage, setActivePage] = useState<string>(location.pathname);
 
   useEffect(() => {
@@ -21,7 +17,13 @@ export function AppNavigation() {
     <div className="menuBot">
       <div className="sub-menuBot">
         {dataItem.map((item: ItemNavigation) => (
-          <Button variant="text" color="inherit" sx={{ textTransform: "capitalize" }} href={item.path} key={item.path} >
+          <Button
+            variant="text"
+            color="inherit"
+            sx={{ textTransform: "capitalize" }}
+            href={item.path}
+            key={item.path}
+          >
             <div
               key={item.path}
               className="menuBottomItem"
@@ -29,19 +31,19 @@ export function AppNavigation() {
             >
               <div
                 className={
-                  activepage === item.path ? "iconClickMiddle" : "iconClick"
+                  activepage.includes(item.path) ? "iconClickMiddle" : "iconClick"
                 }
               >
                 <IconButton>
                   <img
-                    src={activepage === item.path ? item.activeIcon : item.icon}
+                    src={activepage.includes(item.path) ? item.activeIcon : item.icon}
                     alt="Home Health"
                   />
                 </IconButton>
               </div>
               <Typography
                 className={
-                  activepage === item.path
+                  activepage.includes(item.path)
                     ? "menuBotIconName-over"
                     : "menuBotIconName"
                 }
@@ -49,7 +51,6 @@ export function AppNavigation() {
                 {item.name}
               </Typography>
             </div>
-
           </Button>
         ))}
       </div>

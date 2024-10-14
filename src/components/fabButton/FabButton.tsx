@@ -1,5 +1,5 @@
 import { IFabButton } from "../../models/FabButton";
-import fab from "../../assets/images/contact/add_circle.svg";
+import fab from "../../assets/images/add_circle/add_circle.svg";
 import "./FabButton.css";
 
 import { useNavigate } from "react-router-dom";

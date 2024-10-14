@@ -1,14 +1,13 @@
 import { IconButton, InputBase, Paper, Typography } from "@mui/material";
 import "./Contacts.css";
-
+import Header from "../../components/header/Header";
 import { useEffect, useState } from "react";
 import search from "../../assets/images/contact/Icon.svg";
+import { useLocation, useNavigate } from "react-router-dom";
 import arrowFoward from "../../assets/images/contact/arrow_forward_ios.svg";
 import stethoscope from "../../assets/images/contact/stethoscope.svg";
 import { IContact } from "../../models/Contact";
-import Header from "../../components/header/Header";
 import { FabButton } from "../../components/fabButton/FabButton";
-import { useNavigate, useLocation } from "react-router-dom";
 
 function Contacts() {
   const navigate = useNavigate();
@@ -17,13 +16,22 @@ function Contacts() {
   const [contacts, setContacts] = useState<IContact[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const getContacts = async (): Promise<void> => {
     try {
       const result = await fetch("http://localhost:3000/contacts");
       const datas: IContact[] = await result.json();
-      if (location.state?.newContact) {
-        setContacts([location.state.newContact, ...datas]); // Place the new contact at the top
+
+      if (location.state && location.state?.newContact) {
+        const newStateContact = location.state?.newContact;
+        const NewDatas = datas.filter(
+          (contact) => contact.id !== newStateContact.id
+        );
+        NewDatas.unshift(newStateContact);
+
+        setContacts(NewDatas);
       } else {
         setContacts(datas);
       }
@@ -127,10 +135,10 @@ function Contacts() {
                     sx={{ p: "10px" }}
                     aria-label="arrowBack"
                     onClick={() => {
-                      navigate(`/viewContact/${contact.id}`);
+                      navigate(`details`, { state: { id: contact.id } });
                     }}
                   >
-                    <img src={arrowFoward} alt="arrowFoward icon" />
+                    <img src={arrowFoward} alt="arrowBack icon" />
                   </IconButton>
                 </Paper>
               ))
@@ -138,7 +146,7 @@ function Contacts() {
           </div>
         </div>
 
-        <FabButton path="/addEditContact" />
+        <FabButton path="add" />
       </div>
     </>
   );
