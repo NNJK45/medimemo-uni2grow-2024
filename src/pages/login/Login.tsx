@@ -21,6 +21,8 @@ import {
   validationField,
 } from "../../utils/Validation";
 import "./Login.css";
+import { signInWithPopup } from "firebase/auth"; 
+import { auth, provider } from "./firebase-config";  
 
 function Login() {
   const navigate = useNavigate();
@@ -34,10 +36,6 @@ function Login() {
     username: "",
     password: "",
   });
-  interface Users {
-    username: "";
-    password: "";
-  }
 
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
   const [snackbarMessage, setSnackbarMessage] = useState<string>("");
@@ -63,25 +61,25 @@ function Login() {
     try {
       const validationErrors = validateForm(credentials);
       if (Object.keys(validationErrors).length === 0) {
-        const result = await fetch("http://localhost:3000/users");
-        const datas = await result.json();
-
-        const isValidUser = datas.some(
-          (item: Users) =>
-            item.username === credentials.username &&
-            item.password === credentials.password
-        );
-        if (isValidUser) {
-          setCredentials({ username: "", password: "" });
-          navigate("/medications");
-        } else {
-          setSnackbarMessage("Email or password incorrect");
-          setOpenSnackbar(true);
-        }
+        // Handle local authentication
       } else {
         setErrors(validationErrors);
       }
     } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      if (user) {
+        navigate("/medications");
+      }
+    } catch (error) {
+      setSnackbarMessage("Google login failed.");
+      setOpenSnackbar(true);
       console.error(error);
     }
   };
@@ -151,7 +149,7 @@ function Login() {
                   backgroundColor: "red",
                   color: "white",
                   fontWeight: "bold",
-                  flex: 1
+                  flex: 1,
                 }}
                 type="submit"
               >
@@ -183,8 +181,9 @@ function Login() {
                   display: "flex",
                   cursor: "pointer",
                 }}
+                onClick={handleGoogleLogin}
               >
-                <img width={30} height={30} alt="apple" src={a} />
+                <img width={30} height={30} alt="google" src={g} />
               </Card>
 
               <Card
@@ -196,8 +195,9 @@ function Login() {
                   display: "flex",
                   cursor: "pointer",
                 }}
+                
               >
-                <img width={30} height={30} alt="google" src={g} />
+                <img width={30} height={30} alt="google" src={f} />
               </Card>
               <Card
                 sx={{
@@ -208,9 +208,11 @@ function Login() {
                   display: "flex",
                   cursor: "pointer",
                 }}
+                onClick={handleGoogleLogin}
               >
-                <img width={30} height={30} alt="facebook" src={f} />
+                <img width={30} height={30} alt="google" src={a} />
               </Card>
+              {/* Other sign-in methods */}
             </div>
           </div>
         </form>
