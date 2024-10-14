@@ -8,11 +8,7 @@ import arrowFoward from "../../assets/images/contact/arrow_forward_ios.svg";
 import stethoscope from "../../assets/images/contact/stethoscope.svg";
 import { IContact } from "../../models/Contact";
 import { FabButton } from "../../components/fabButton/FabButton";
-
 function Contacts() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const [contacts, setContacts] = useState<IContact[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [error, setError] = useState<string>("");
